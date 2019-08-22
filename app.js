@@ -8,7 +8,7 @@ window.onload = function(){
     var vm = new Vue({
         el: '#app',
         data: {
-          fields: ['id','title','text'],
+          fields: ['id','title','text', 'actions'],
           news: []
         },
         mounted(){
@@ -18,6 +18,11 @@ window.onload = function(){
             getData(){
                 axios.get(buildUrl('news')).then((response) => {
                     this.news = response.data;
+                }).catch(error => {console.log(error)});
+            },
+            deleteData(id){
+                axios.delete(buildUrl('news/' + id)).then((response) => {
+                    this.getData();
                 }).catch(error => {console.log(error)});
             }   
         }

@@ -13,7 +13,12 @@
 </head>
 <body>
  <div id="app">
-     <b-table triped hover :items="news" :fields="fields">
+     <b-table striped hover :items="news" :fields="fields">
+         <template slot="[actions]" slot-scope="row">
+             <b-button size="sm" @click="deleteData(row.item.id)" variant="danger">
+                 X
+             </b-button>
+         </template>
      </b-table>
  </div>
 </body>
