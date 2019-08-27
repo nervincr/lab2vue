@@ -1,23 +1,64 @@
 <!DOCTYPE html>
 <html>
 <head>
- <meta charset="UTF-8">
- <title>API REST APP</title>
- <script src="https://unpkg.com/vue"></script>
- <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
- <script src="https://unpkg.com/bootstrap-vue@2.0.0-rc.28/dist/bootstrap-vue.js"></script>
- <script src="app.js"></script>
- <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" crossorigin="anonymous">
- <link rel="stylesheet" href="https://unpkg.com/bootstrap-vue@0.15.8/dist/bootstrap-vue.css" crossorigin="anonymous">
+    <meta charset="UTF-8" />
+    <title>API REST APP</title>
+    <script src="https://unpkg.com/vue"></script>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <script src="https://unpkg.com/bootstrap-vue@2.0.0-rc.28/dist/bootstrap-vue.js"></script>
+    <script src="https://unpkg.com/jquery@3.4.1/dist/jquery.js"></script>
+    <script src="https://unpkg.com/toastr@2.1.4/build/toastr.min.js"></script>
+    <script src="app.js"></script>
+    <link
+        rel="stylesheet"
+        href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+        crossorigin="anonymous"
+    />
+    <link
+        rel="stylesheet"
+        href="https://unpkg.com/bootstrap-vue@0.15.8/dist/bootstrap-vue.css"
+        crossorigin="anonymous"
+    />
+    <link
+        rel="stylesheet"
+        href="https://unpkg.com/toastr@2.1.4/build/toastr.min.css"
+        crossorigin="anonymous"
+    />
 
 </head>
 <body>
  <div id="app">
-     <b-table striped hover :items="news" :fields="fields">
+     <div class="jumbotron">
+        <form @submit="submitData">
+            <div class="form-group">
+                <label for="title">Título</label>
+                <input type="text"
+                        id="title"
+                        class="form-control"
+                        v-model="noti.title">
+                <label for="text">Texto</label>
+                <input type="text"
+                        id="text"
+                        class="form-control"
+                        v-model="noti.text">
+                <button class="btn btn-success">Guardar</button>
+            </div>
+        </form>
+     </div>    
+     <b-table 
+        striped 
+        bordered
+        responsive
+        hover 
+        :items="news" 
+        :fields="fields">
          <template slot="[actions]" slot-scope="row">
-             <b-button size="sm" @click="deleteData(row.item.id)" variant="danger">
-                 X
+             <b-button size="sm" @click="getEditData(row.item.id)" variant="success">
+                 Edit
              </b-button>
+             <b-button size="sm" @click="deleteData(row.item.id)" variant="danger">
+                Delete
+            </b-button>
          </template>
      </b-table>
  </div>
