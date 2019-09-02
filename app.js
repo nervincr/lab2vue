@@ -14,8 +14,8 @@ window.onload = function(){
           noti: {
               id: 0,
               title: '',
-              text: '',
               slug: '',
+              text: '',
               image: ''
           },
           news: []
@@ -39,8 +39,8 @@ window.onload = function(){
                 }
                 this.noti.id = 0;
                 this.noti.title = "";
-                this.noti.text = "";
                 this.noti.slug = "";
+                this.noti.text = "";
                 this.noti.image = "";
             },
             deleteData(id){
@@ -52,13 +52,12 @@ window.onload = function(){
             },
             addData(){
                 axios.post(
-                    buildUrl('insertnews'), 
+                    buildUrl('insertNews'), 
                     {
-                        id: this.noti.id,
                         title: this.noti.title,
-                        slug: this.noti.slug,
+                        slug: this.noti.title + this.noti.text,
                         text: this.noti.text,
-                        image: this.noti.image
+                        image: "default.png"
                     }
                 ).then((response) => {
                     this.getData();
@@ -81,10 +80,12 @@ window.onload = function(){
                 }).catch(error => {console.log(error)});
             }, 
             getEditData(id){
-                axios.get(buildUrl('news/' + id)).then((response) => {
+                axios.get(buildUrl('getnews/' + id)).then((response) => {
                     this.noti.id = response.data.id;
                     this.noti.title = response.data.title;
+                    this.noti.slug = response.data.slug;
                     this.noti.text = response.data.text;
+                    this.noti.image = response.data.image;
                 }).catch(error => {console.log(error)});
             },
             MyWebSocketCall() {
