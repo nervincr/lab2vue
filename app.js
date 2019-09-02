@@ -52,10 +52,10 @@ window.onload = function(){
             },
             addData(){
                 axios.post(
-                    buildUrl('insertNews'), 
+                    buildUrl('insertnews'), 
                     {
                         title: this.noti.title,
-                        slug: this.noti.title + this.noti.text,
+                        slug: this.noti.title,
                         text: this.noti.text,
                         image: "default.png"
                     }
@@ -66,7 +66,7 @@ window.onload = function(){
             },
             editData(){
                 axios.post(
-                    buildUrl('updateNews'), 
+                    buildUrl('updatenews'), 
                     {
                         id: this.noti.id,
                         title: this.noti.title,
