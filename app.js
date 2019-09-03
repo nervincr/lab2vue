@@ -59,6 +59,7 @@ window.onload = function(){
                 axios.post(
                     buildUrl('insertnews'), formdata
                 ).then((response) => {
+                    ws.send("add");
                     this.getData();
                     toastr.success("La noticia fue agregada con éxito");
                 }).catch(error => {console.log(error)});
@@ -73,6 +74,7 @@ window.onload = function(){
                 axios.post(
                     buildUrl('updatenews'),formdata
                 ).then((response) => {
+                    ws.send("update");
                     this.getData();
                     toastr.success("La noticia fue actualizada con éxito");
                 }).catch(error => {console.log(error)});
