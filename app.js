@@ -51,29 +51,27 @@ window.onload = function(){
                 }).catch(error => {console.log(error)});
             },
             addData(){
+                var formdata = new FormData();
+                formdata.append('title',this.noti.title);
+                formdata.append('slug',this.noti.slug);
+                formdata.append('text',this.noti.text);
+                formdata.append('image',this.noti.image);
                 axios.post(
-                    buildUrl('insertnews'), 
-                    {
-                        title: this.noti.title,
-                        slug: this.noti.title,
-                        text: this.noti.text,
-                        image: "default.png"
-                    }
+                    buildUrl('insertnews'), formdata
                 ).then((response) => {
                     this.getData();
                     toastr.success("La noticia fue agregada con éxito");
                 }).catch(error => {console.log(error)});
             },
             editData(){
+                var formdata = new FormData();
+                formdata.append('id',this.noti.id);
+                formdata.append('title',this.noti.title);
+                formdata.append('slug',this.noti.slug);
+                formdata.append('text',this.noti.text);
+                formdata.append('image',this.noti.image);
                 axios.post(
-                    buildUrl('updatenews'), 
-                    {
-                        id: this.noti.id,
-                        title: this.noti.title,
-                        slug: this.noti.slug,
-                        text: this.noti.text,
-                        image: this.image
-                    }
+                    buildUrl('updatenews'),formdata
                 ).then((response) => {
                     this.getData();
                     toastr.success("La noticia fue actualizada con éxito");
